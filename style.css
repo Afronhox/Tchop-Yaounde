@@ -413,6 +413,8 @@ img {
 
 dialog {
   width: min(92vw, 480px);
+  max-height: min(90vh, 640px);
+  overflow: auto;
   padding: 0;
   color: var(--ink);
   background: var(--white);
@@ -449,6 +451,21 @@ dialog::backdrop {
 .dialog__area {
   margin: 0.25rem 0 0;
   color: var(--muted);
+}
+
+.dialog__meta {
+  margin: 0.45rem 0 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  color: var(--forest);
+}
+
+.dialog__menu-label {
+  margin: 0 0 0.35rem;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.05rem;
 }
 
 .dialog__close {

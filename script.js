@@ -333,6 +333,7 @@ document.getElementById("header-search").addEventListener("click", () => {
 const dialog = document.getElementById("menu-dialog");
 const menuTitle = document.getElementById("menu-title");
 const menuArea = document.getElementById("menu-area");
+const menuMeta = document.getElementById("menu-meta");
 const menuList = document.getElementById("menu-list");
 const menuNote = document.getElementById("menu-note");
 
@@ -343,7 +344,18 @@ function openMenu(id) {
   menuTitle.textContent = restaurant.name;
   menuArea.textContent = "📍 " + restaurant.area;
 
-  menuList.innerHTML = restaurant.dishes
+  const tagText = restaurant.tags.length
+    ? restaurant.tags.join(", ")
+    : "general";
+  const dishCount = restaurant.dishes.length;
+  menuMeta.textContent =
+    dishCount + (dishCount === 1 ? " dish" : " dishes") +
+    " · from " + formatPrice(startingPrice(restaurant)) +
+    " · " + tagText;
+
+  const dishes = restaurant.dishes.slice().sort((a, b) => a.price - b.price);
+
+  menuList.innerHTML = dishes
     .map(dish => `
         <li>
           ${dish.image ? `<img class="menu-list__img" src="${escapeHtml(dish.image)}"
@@ -354,7 +366,7 @@ function openMenu(id) {
           .join("");
 
   menuNote.hidden = restaurant.verified;
-  menuNote.textContent = "Sample menu. Dishes and prices are placeholders until we verify them.";
+  menuNote.textContent = "Sample menu for the demo. Dishes and prices are not verified yet.";
 
   dialog.showModal();
 }
