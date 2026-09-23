@@ -242,7 +242,15 @@ const filters = {
   all: () => true,
   budget: restaurant => startingPrice(restaurant) <= 1500,
   traditional: restaurant => restaurant.tags.includes("traditional"),
-  chicken: restaurant => restaurant.tags.includes("chicken")
+  chicken: restaurant => restaurant.tags.includes("chicken"),
+  "mvog-ada": restaurant => restaurant.area === "Mvog-Ada",
+  yaounde: restaurant => restaurant.area === "Yaoundé",
+  essos: restaurant => restaurant.area === "Essos",
+  bastos: restaurant => restaurant.area === "Bastos",
+  melen: restaurant => restaurant.area === "Melen",
+  mokolo: restaurant => restaurant.area === "Mokolo",
+  emana: restaurant => restaurant.area === "Emana",
+  "ngoa-ekelle": restaurant => restaurant.area === "Ngoa-Ekellé"
 };
 
 let activeFilter = "all";

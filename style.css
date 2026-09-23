@@ -171,6 +171,10 @@ img {
   gap: 0.6rem;
 }
 
+.filters--area {
+  margin-top: 0.75rem;
+}
+
 .chip {
   font: inherit;
   font-weight: 600;
