@@ -184,6 +184,17 @@ function cardHtml(restaurant) {
     : `<div class="card__placeholder" aria-hidden="true">${restaurant.emoji}</div>
        <span class="card__photo-note">Photo coming soon</span>`;
 
+  const tagsHtml = restaurant.tags.length
+    ? `<p class="card__tags">${restaurant.tags.map(tag =>
+        `<span class="card__tag">${escapeHtml(tag)}</span>`
+      ).join("")}</p>`
+    : "";
+
+  const dishPreview = restaurant.dishes
+    .slice(0, 3)
+    .map(dish => dish.name)
+    .join(" · ");
+
   const sampleNote = restaurant.verified
     ? ""
     : `<p class="card__sample">Sample info, not verified yet</p>`;
@@ -200,6 +211,8 @@ function cardHtml(restaurant) {
       <div class="card__body">
         <h3 class="card__name">${escapeHtml(restaurant.name)}</h3>
         <p class="card__area">📍 ${escapeHtml(restaurant.area)}</p>
+        ${tagsHtml}
+        <p class="card__dishes">${escapeHtml(dishPreview)}</p>
         ${sampleNote}
         <button class="btn" type="button" data-menu="${restaurant.id}">View menu</button>
       </div>
