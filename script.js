@@ -170,7 +170,33 @@ function escapeHtml(text) {
 }
 
 
-/* ---------- 3. DRAWING THE CARDS ---------- */
+/* ---------- 3. FAVORITES ---------- */
+function getFavorites() {
+  const raw = localStorage.getItem("tchop-favorites");
+  return raw ? JSON.parse(raw) : [];
+}
+
+function saveFavorites(ids) {
+  localStorage.setItem("tchop-favorites", JSON.stringify(ids));
+}
+
+function isFavorite(id) {
+  return getFavorites().includes(id);
+}
+
+function toggleFavorite(id) {
+  const ids = getFavorites();
+  const index = ids.indexOf(id);
+  if (index === -1) {
+    ids.push(id);
+  } else {
+    ids.splice(index, 1);
+  }
+  saveFavorites(ids);
+}
+
+
+/* ---------- 4. DRAWING THE CARDS ---------- */
 const grid = document.getElementById("restaurant-grid");
 const emptyMessage = document.getElementById("empty");
 const resultCount = document.getElementById("result-count");
@@ -199,10 +225,14 @@ function cardHtml(restaurant) {
     ? ""
     : `<p class="card__sample">Sample info, not verified yet</p>`;
 
+  const saved = isFavorite(restaurant.id);
+
   return `
     <article class="card">
       <div class="card__photo" style="--tone: ${restaurant.tone}">
         ${photo}
+        <button class="card__fav" type="button" data-fav="${restaurant.id}"
+          aria-pressed="${saved}" aria-label="Save to favorites">${saved ? "♥" : "♡"}</button>
         <div class="price-tag">
           <span class="price-tag__from">From</span>
           <span class="price-tag__amount">${formatPrice(startingPrice(restaurant))}</span>
@@ -234,12 +264,13 @@ function render(list) {
 }
 
 
-/* ---------- 4. SEARCH + FILTERS ---------- */
+/* ---------- 5. SEARCH + FILTERS ---------- */
 const searchInput = document.getElementById("search-input");
 const chips = document.querySelectorAll(".chip");
 
 const filters = {
   all: () => true,
+  favorites: restaurant => isFavorite(restaurant.id),
   budget: restaurant => startingPrice(restaurant) <= 1500,
   traditional: restaurant => restaurant.tags.includes("traditional"),
   chicken: restaurant => restaurant.tags.includes("chicken"),
@@ -329,6 +360,13 @@ function openMenu(id) {
 }
 
 grid.addEventListener("click", event => {
+  const favButton = event.target.closest("[data-fav]");
+  if (favButton) {
+    toggleFavorite(favButton.dataset.fav);
+    update();
+    return;
+  }
+
   const button = event.target.closest("[data-menu]");
   if (button) openMenu(button.dataset.menu);
 });
