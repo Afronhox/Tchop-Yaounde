@@ -9,7 +9,7 @@ const restaurants = [
     tags: ["traditional"],
     emoji: "🍛",
     tone: "#f5d98b",
-    image: null,
+    image: "images/places/kitchen-yaounde.jpg",
     verified: false,
     dishes: [
       { name: "Brochettes", price: 600, image: "images/brochettes.jpg" },
@@ -27,7 +27,7 @@ const restaurants = [
     tags: ["chicken"],
     emoji: "🍗",
     tone: "#f2b5a7",
-    image: null,
+    image: "images/places/chalet-restaurant.jpg",
     verified: false,
     dishes: [
       { name: "Chicken and chips", price: 2000, image: "images/chicken and chips.jpg" },
@@ -45,7 +45,7 @@ const restaurants = [
     tags: ["traditional"],
     emoji: "🥘",
     tone: "#b9dcb8",
-    image: null,
+    image: "images/places/ekounou-market.jpg",
     verified: false,
     dishes: [
       { name: "Koki", price: 1000, image: "images/koki.jpg" },
@@ -63,7 +63,7 @@ const restaurants = [
     tags: ["chicken"],
     emoji: "🍗",
     tone: "#f7c99a",
-    image: null,
+    image: "images/places/brochettes-bbq.jpg",
     verified: false,
     dishes: [
       { name: "Chicken and chips", price: 2500, image: "images/chicken and chips.jpg" },
@@ -81,7 +81,7 @@ const restaurants = [
     tags: ["traditional", "chicken"],
     emoji: "🍲",
     tone: "#c9d9ee",
-    image: null,
+    image: "images/places/source-village.jpg",
     verified: false,
     dishes: [
       { name: "Achu", price: 1200, image: "images/achu.jpg" },
@@ -99,7 +99,7 @@ const restaurants = [
     tags: [],
     emoji: "🍢",
     tone: "#e6c3dc",
-    image: null,
+    image: "images/places/soya-stall.jpg",
     verified: false,
     dishes: [
       { name: "Brochettes", price: 500, image: "images/brochettes.jpg" },
@@ -117,7 +117,7 @@ const restaurants = [
     tags: ["traditional"],
     emoji: "🐟",
     tone: "#a8d5e5",
-    image: null,
+    image: "images/places/poisson-restaurant.jpg",
     verified: false,
     dishes: [
       { name: "Poisson braisé", price: 2000, image: "images/poisson-braise.jpg" },
@@ -135,7 +135,7 @@ const restaurants = [
     tags: ["chicken"],
     emoji: "🔥",
     tone: "#f0c4a8",
-    image: null,
+    image: "images/places/street-grillade.jpg",
     verified: false,
     dishes: [
       { name: "Grillade poulet", price: 2000, image: "images/grillade-poulet.jpg" },
