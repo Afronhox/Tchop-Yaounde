@@ -271,7 +271,9 @@ const chips = document.querySelectorAll(".chip");
 const filters = {
   all: () => true,
   favorites: restaurant => isFavorite(restaurant.id),
-  budget: restaurant => startingPrice(restaurant) <= 1500,
+  "budget-1000": restaurant => startingPrice(restaurant) <= 1000,
+  "budget-1500": restaurant => startingPrice(restaurant) <= 1500,
+  "budget-2500": restaurant => startingPrice(restaurant) <= 2500,
   traditional: restaurant => restaurant.tags.includes("traditional"),
   chicken: restaurant => restaurant.tags.includes("chicken"),
   "mvog-ada": restaurant => restaurant.area === "Mvog-Ada",
