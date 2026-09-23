@@ -118,8 +118,11 @@ const emptyMessage = document.getElementById("empty");
 const resultCount = document.getElementById("result-count");
 
 function cardHtml(restaurant) {
-  const photo = restaurant.image
-    ? `<img src="${escapeHtml(restaurant.image)}" alt="${escapeHtml(restaurant.name)}" loading="lazy">`
+  const firstDishPhoto = restaurant.dishes.find(dish => dish.image);
+  const photoSrc = restaurant.image || (firstDishPhoto && firstDishPhoto.image);
+
+  const photo = photoSrc
+    ? `<img src="${escapeHtml(photoSrc)}" alt="${escapeHtml(restaurant.name)}" loading="lazy">`
     : `<div class="card__placeholder" aria-hidden="true">${restaurant.emoji}</div>
        <span class="card__photo-note">Photo coming soon</span>`;
 
