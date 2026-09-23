@@ -1,9 +1,10 @@
 /* ---------- 1. DATA ---------
 */
+/* Sample menus and prices for the student demo. Not verified with restaurants. */
 const restaurants = [
   {
     id: "o-terroir",
-    name: "Ô Terroir",
+    name: "Ô Terroir (sample)",
     area: "Mvog-Ada",
     tags: ["traditional"],
     emoji: "🍛",
@@ -12,13 +13,16 @@ const restaurants = [
     verified: false,
     dishes: [
       { name: "Brochettes", price: 600, image: "images/brochettes.jpg" },
-      { name: "Ndolé with plantain", price: 2000, image: "images/ndole.jpg"},
-      { name: "koki", price: 3000, image: "images/koki.jpg" }
+      { name: "Koki", price: 1200, image: "images/koki.jpg" },
+      { name: "Ndolé with plantain", price: 2000, image: "images/ndole.jpg" },
+      { name: "Eru and water fufu", price: 1500, image: "images/eru and water fufu.jpg" },
+      { name: "Sanga", price: 1000, image: "images/sanga.jpg" },
+      { name: "Kwacoco", price: 800, image: "images/kwacoco.jpg" }
     ]
   },
   {
-    id: "la force du poulet",
-    name: "La Force",
+    id: "la-force-du-poulet",
+    name: "La Force (sample)",
     area: "Yaoundé",
     tags: ["chicken"],
     emoji: "🍗",
@@ -27,7 +31,11 @@ const restaurants = [
     verified: false,
     dishes: [
       { name: "Chicken and chips", price: 2000, image: "images/chicken and chips.jpg" },
-      { name: "Poulet dj", price: 2500, image: "images/poulet dj.jpg" }
+      { name: "Poulet DJ", price: 2500, image: "images/poulet dj.jpg" },
+      { name: "Poulet braisé", price: 1800, image: "images/poulet braise.jpg" },
+      { name: "Half roasted chicken", price: 3000, image: "images/half roasted chicken.jpg" },
+      { name: "Poulet GD", price: 2800, image: "images/poulet-gd.jpg" },
+      { name: "Grillade poulet", price: 2200, image: "images/grillade-poulet.jpg" }
     ]
   },
   {
@@ -42,7 +50,10 @@ const restaurants = [
     dishes: [
       { name: "Koki", price: 1000, image: "images/koki.jpg" },
       { name: "Bobolo and fish", price: 1200, image: "images/bobolo and fish.jpg" },
-      { name: "Eru and water fufu", price: 1500, image: "images/eru and water fufu.jpg" }
+      { name: "Eru and water fufu", price: 1500, image: "images/eru and water fufu.jpg" },
+      { name: "Achu", price: 1300, image: "images/achu.jpg" },
+      { name: "Plantain porridge", price: 900, image: "images/plantain-porridge.jpg" },
+      { name: "Taro sauce jaune", price: 1600, image: "images/taro-sauce-jaune.jpg" }
     ]
   },
   {
@@ -56,7 +67,11 @@ const restaurants = [
     verified: false,
     dishes: [
       { name: "Chicken and chips", price: 2500, image: "images/chicken and chips.jpg" },
-      { name: "Half roasted chicken", price: 3500, image: "images/half roasted chicken.jpg" }
+      { name: "Half roasted chicken", price: 3500, image: "images/half roasted chicken.jpg" },
+      { name: "Poulet DJ", price: 2700, image: "images/poulet dj.jpg" },
+      { name: "Poulet GD", price: 3000, image: "images/poulet-gd.jpg" },
+      { name: "Grillade poulet", price: 2400, image: "images/grillade-poulet.jpg" },
+      { name: "Soya", price: 1500, image: "images/soya.jpg" }
     ]
   },
   {
@@ -70,7 +85,11 @@ const restaurants = [
     verified: false,
     dishes: [
       { name: "Achu", price: 1200, image: "images/achu.jpg" },
-      { name: "Poulet braisé", price: 1800, image: "images/poulet braise.jpg" }
+      { name: "Poulet braisé", price: 1800, image: "images/poulet braise.jpg" },
+      { name: "Ndolé with plantain", price: 1900, image: "images/ndole.jpg" },
+      { name: "Kati kati", price: 1700, image: "images/kati-kati.jpg" },
+      { name: "Fufu corn and kati", price: 1600, image: "images/fufu-corn-kati.jpg" },
+      { name: "Chicken and chips", price: 2000, image: "images/chicken and chips.jpg" }
     ]
   },
   {
@@ -83,9 +102,48 @@ const restaurants = [
     image: null,
     verified: false,
     dishes: [
-      { name: "Brochettes", price: 500, image: "images/brochettes.jpg"},
-      { name: "Fried plantain and beans", price: 700,image: "images/fried plantain and beans.jpg" },
+      { name: "Brochettes", price: 500, image: "images/brochettes.jpg" },
+      { name: "Fried plantain and beans", price: 700, image: "images/fried plantain and beans.jpg" },
       { name: "Soya", price: 1000, image: "images/soya.jpg" },
+      { name: "Beignets", price: 300, image: "images/beignets.jpg" },
+      { name: "Kwacoco", price: 600, image: "images/kwacoco.jpg" },
+      { name: "Plantain porridge", price: 800, image: "images/plantain-porridge.jpg" }
+    ]
+  },
+  {
+    id: "sample-emana",
+    name: "Poisson Emana (sample)",
+    area: "Emana",
+    tags: ["traditional"],
+    emoji: "🐟",
+    tone: "#a8d5e5",
+    image: null,
+    verified: false,
+    dishes: [
+      { name: "Poisson braisé", price: 2000, image: "images/poisson-braise.jpg" },
+      { name: "Bobolo and fish", price: 1500, image: "images/bobolo and fish.jpg" },
+      { name: "Crevettes and fries", price: 2500, image: "images/crevettes-frites.jpg" },
+      { name: "Ndolé with plantain", price: 2200, image: "images/ndole.jpg" },
+      { name: "Sanga", price: 1100, image: "images/sanga.jpg" },
+      { name: "Eru and water fufu", price: 1800, image: "images/eru and water fufu.jpg" }
+    ]
+  },
+  {
+    id: "sample-ntagui",
+    name: "Grillade Ngoa (sample)",
+    area: "Ngoa-Ekellé",
+    tags: ["chicken"],
+    emoji: "🔥",
+    tone: "#f0c4a8",
+    image: null,
+    verified: false,
+    dishes: [
+      { name: "Grillade poulet", price: 2000, image: "images/grillade-poulet.jpg" },
+      { name: "Brochettes", price: 700, image: "images/brochettes.jpg" },
+      { name: "Soya", price: 1200, image: "images/soya.jpg" },
+      { name: "Poulet braisé", price: 1900, image: "images/poulet braise.jpg" },
+      { name: "Half roasted chicken", price: 3200, image: "images/half roasted chicken.jpg" },
+      { name: "Chicken and chips", price: 2300, image: "images/chicken and chips.jpg" }
     ]
   }
 ];
@@ -191,6 +249,7 @@ function update() {
   const results = restaurants.filter(
     restaurant => filters[activeFilter](restaurant) && matchesSearch(restaurant, query)
   );
+  results.sort((a, b) => startingPrice(a) - startingPrice(b));
   render(results);
 }
 
