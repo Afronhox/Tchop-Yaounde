@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Login - Tchop Yaoundé</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="auth-styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="flag-stripe" aria-hidden="true"></div>
+    <div class="wrap site-header__row">
+      <a class="logo" href="index.html">🍴 Tchop Yaoundé</a>
+      <nav class="header-nav">
+        <a class="header-link" href="login.html">Login</a>
+        <a class="header-link" href="signup.html">Sign up</a>
+        <a class="header-link" href="admin.html">Admin</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="auth-page">
+    <div class="auth-wrap">
+      <h1>Login</h1>
+      <form id="login-form" class="auth-form" onsubmit="return false">
+        <div class="form-field">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" required>
+        </div>
+        <div class="form-field">
+          <label for="password">Password</label>
+          <input id="password" name="password" type="password" required>
+        </div>
+        <div class="auth-actions">
+          <button id="login-button" class="btn" type="submit">Login</button>
+          <div class="auth-note">No account? <a href="signup.html">Create one</a></div>
+        </div>
+        <div id="login-message" role="status" aria-live="polite"></div>
+      </form>
+    </div>
+  </main>
+
+  <script src="auth.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('login-form');
+      const email = document.getElementById('email');
+      const password = document.getElementById('password');
+      const msg = document.getElementById('login-message');
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        msg.textContent = 'Signing in...';
+        try {
+          const res = await fetch('/api/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: email.value.trim(), password: password.value })
+          });
+          const body = await res.json();
+          if (!res.ok) {
+            msg.textContent = body.error || 'Login failed';
+            msg.style.color = 'var(--tomato)';
+            return;
+          }
+          const user = body.user;
+          // set current user locally for UI state
+          Auth.setCurrentUser(user);
+          if (user.role === 'admin') window.location = 'admin.html'; else window.location = 'index.html';
+        } catch (err) {
+          msg.textContent = 'Could not reach server. Make sure backend is running.';
+          msg.style.color = 'var(--tomato)';
+        }
+      });
+    });
+  </script>
+</body>
+</html>

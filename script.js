@@ -1,41 +1,37 @@
-/* ---------- 1. DATA ---------
+/* ---------- 1. DATA ----------
+   This is SAMPLE data. Replace it with real, checked information.
+   Set verified: true once you have checked a restaurant yourself.
+   Set image: "images/photo.jpg" only with a real photo of that place.
+   tags used by the filters: "traditional", "chicken"
 */
-/* Sample menus and prices for the student demo. Not verified with restaurants. */
 const restaurants = [
   {
     id: "o-terroir",
-    name: "Ô Terroir (sample)",
+    name: "Ô Terroir",
     area: "Mvog-Ada",
     tags: ["traditional"],
     emoji: "🍛",
     tone: "#f5d98b",
-    image: "images/places/kitchen-yaounde.jpg",
+    image: null,
     verified: false,
     dishes: [
-      { name: "Brochettes", price: 600, image: "images/brochettes.jpg" },
-      { name: "Koki", price: 1200, image: "images/koki.jpg" },
-      { name: "Ndolé with plantain", price: 2000, image: "images/ndole.jpg" },
-      { name: "Eru and water fufu", price: 1500, image: "images/eru and water fufu.jpg" },
-      { name: "Sanga", price: 1000, image: "images/sanga.jpg" },
-      { name: "Kwacoco", price: 800, image: "images/kwacoco.jpg" }
+      { name: "Beignets-haricots", price: 600 },
+      { name: "Ndolé with plantain", price: 2000 },
+      { name: "Poisson braisé", price: 3000 }
     ]
   },
   {
-    id: "la-force-du-poulet",
-    name: "La Force (sample)",
+    id: "la-force",
+    name: "La Force",
     area: "Yaoundé",
     tags: ["chicken"],
     emoji: "🍗",
     tone: "#f2b5a7",
-    image: "images/places/chalet-restaurant.jpg",
+    image: null,
     verified: false,
     dishes: [
-      { name: "Chicken and chips", price: 2000, image: "images/chicken and chips.jpg" },
-      { name: "Poulet DJ", price: 2500, image: "images/poulet dj.jpg" },
-      { name: "Poulet braisé", price: 1800, image: "images/poulet braise.jpg" },
-      { name: "Half roasted chicken", price: 3000, image: "images/half roasted chicken.jpg" },
-      { name: "Poulet GD", price: 2800, image: "images/poulet-gd.jpg" },
-      { name: "Grillade poulet", price: 2200, image: "images/grillade-poulet.jpg" }
+      { name: "Grilled chicken with miondo", price: 2000 },
+      { name: "Poulet DG", price: 2500 }
     ]
   },
   {
@@ -45,15 +41,12 @@ const restaurants = [
     tags: ["traditional"],
     emoji: "🥘",
     tone: "#b9dcb8",
-    image: "images/places/ekounou-market.jpg",
+    image: null,
     verified: false,
     dishes: [
-      { name: "Koki", price: 1000, image: "images/koki.jpg" },
-      { name: "Bobolo and fish", price: 1200, image: "images/bobolo and fish.jpg" },
-      { name: "Eru and water fufu", price: 1500, image: "images/eru and water fufu.jpg" },
-      { name: "Achu", price: 1300, image: "images/achu.jpg" },
-      { name: "Plantain porridge", price: 900, image: "images/plantain-porridge.jpg" },
-      { name: "Taro sauce jaune", price: 1600, image: "images/taro-sauce-jaune.jpg" }
+      { name: "Koki with plantain", price: 1000 },
+      { name: "Bobolo and fish", price: 1200 },
+      { name: "Eru with water fufu", price: 1500 }
     ]
   },
   {
@@ -63,15 +56,11 @@ const restaurants = [
     tags: ["chicken"],
     emoji: "🍗",
     tone: "#f7c99a",
-    image: "images/places/brochettes-bbq.jpg",
+    image: null,
     verified: false,
     dishes: [
-      { name: "Chicken and chips", price: 2500, image: "images/chicken and chips.jpg" },
-      { name: "Half roasted chicken", price: 3500, image: "images/half roasted chicken.jpg" },
-      { name: "Poulet DJ", price: 2700, image: "images/poulet dj.jpg" },
-      { name: "Poulet GD", price: 3000, image: "images/poulet-gd.jpg" },
-      { name: "Grillade poulet", price: 2400, image: "images/grillade-poulet.jpg" },
-      { name: "Soya", price: 1500, image: "images/soya.jpg" }
+      { name: "Chicken and chips", price: 2500 },
+      { name: "Half grilled chicken", price: 3500 }
     ]
   },
   {
@@ -81,15 +70,11 @@ const restaurants = [
     tags: ["traditional", "chicken"],
     emoji: "🍲",
     tone: "#c9d9ee",
-    image: "images/places/source-village.jpg",
+    image: null,
     verified: false,
     dishes: [
-      { name: "Achu", price: 1200, image: "images/achu.jpg" },
-      { name: "Poulet braisé", price: 1800, image: "images/poulet braise.jpg" },
-      { name: "Ndolé with plantain", price: 1900, image: "images/ndole.jpg" },
-      { name: "Kati kati", price: 1700, image: "images/kati-kati.jpg" },
-      { name: "Fufu corn and kati", price: 1600, image: "images/fufu-corn-kati.jpg" },
-      { name: "Chicken and chips", price: 2000, image: "images/chicken and chips.jpg" }
+      { name: "Sauce jaune with rice", price: 1200 },
+      { name: "Poulet braisé", price: 1800 }
     ]
   },
   {
@@ -99,51 +84,12 @@ const restaurants = [
     tags: [],
     emoji: "🍢",
     tone: "#e6c3dc",
-    image: "images/places/soya-stall.jpg",
+    image: null,
     verified: false,
     dishes: [
-      { name: "Brochettes", price: 500, image: "images/brochettes.jpg" },
-      { name: "Fried plantain and beans", price: 700, image: "images/fried plantain and beans.jpg" },
-      { name: "Soya", price: 1000, image: "images/soya.jpg" },
-      { name: "Beignets", price: 300, image: "images/beignets.jpg" },
-      { name: "Kwacoco", price: 600, image: "images/kwacoco.jpg" },
-      { name: "Plantain porridge", price: 800, image: "images/plantain-porridge.jpg" }
-    ]
-  },
-  {
-    id: "sample-emana",
-    name: "Poisson Emana (sample)",
-    area: "Emana",
-    tags: ["traditional"],
-    emoji: "🐟",
-    tone: "#a8d5e5",
-    image: "images/places/poisson-restaurant.jpg",
-    verified: false,
-    dishes: [
-      { name: "Poisson braisé", price: 2000, image: "images/poisson-braise.jpg" },
-      { name: "Bobolo and fish", price: 1500, image: "images/bobolo and fish.jpg" },
-      { name: "Crevettes and fries", price: 2500, image: "images/crevettes-frites.jpg" },
-      { name: "Ndolé with plantain", price: 2200, image: "images/ndole.jpg" },
-      { name: "Sanga", price: 1100, image: "images/sanga.jpg" },
-      { name: "Eru and water fufu", price: 1800, image: "images/eru and water fufu.jpg" }
-    ]
-  },
-  {
-    id: "sample-ntagui",
-    name: "Grillade Ngoa (sample)",
-    area: "Ngoa-Ekellé",
-    tags: ["chicken"],
-    emoji: "🔥",
-    tone: "#f0c4a8",
-    image: "images/places/street-grillade.jpg",
-    verified: false,
-    dishes: [
-      { name: "Grillade poulet", price: 2000, image: "images/grillade-poulet.jpg" },
-      { name: "Brochettes", price: 700, image: "images/brochettes.jpg" },
-      { name: "Soya", price: 1200, image: "images/soya.jpg" },
-      { name: "Poulet braisé", price: 1900, image: "images/poulet braise.jpg" },
-      { name: "Half roasted chicken", price: 3200, image: "images/half roasted chicken.jpg" },
-      { name: "Chicken and chips", price: 2300, image: "images/chicken and chips.jpg" }
+      { name: "Brochettes", price: 500 },
+      { name: "Fried plantain and beans", price: 700 },
+      { name: "Soya", price: 1000 }
     ]
   }
 ];
@@ -170,69 +116,25 @@ function escapeHtml(text) {
 }
 
 
-/* ---------- 3. FAVORITES ---------- */
-function getFavorites() {
-  const raw = localStorage.getItem("tchop-favorites");
-  return raw ? JSON.parse(raw) : [];
-}
-
-function saveFavorites(ids) {
-  localStorage.setItem("tchop-favorites", JSON.stringify(ids));
-}
-
-function isFavorite(id) {
-  return getFavorites().includes(id);
-}
-
-function toggleFavorite(id) {
-  const ids = getFavorites();
-  const index = ids.indexOf(id);
-  if (index === -1) {
-    ids.push(id);
-  } else {
-    ids.splice(index, 1);
-  }
-  saveFavorites(ids);
-}
-
-
-/* ---------- 4. DRAWING THE CARDS ---------- */
+/* ---------- 3. DRAWING THE CARDS ---------- */
 const grid = document.getElementById("restaurant-grid");
 const emptyMessage = document.getElementById("empty");
 const resultCount = document.getElementById("result-count");
 
 function cardHtml(restaurant) {
-  const firstDishPhoto = restaurant.dishes.find(dish => dish.image);
-  const photoSrc = restaurant.image || (firstDishPhoto && firstDishPhoto.image);
-
-  const photo = photoSrc
-    ? `<img src="${escapeHtml(photoSrc)}" alt="${escapeHtml(restaurant.name)}" loading="lazy">`
+  const photo = restaurant.image
+    ? `<img src="${escapeHtml(restaurant.image)}" alt="${escapeHtml(restaurant.name)}" loading="lazy">`
     : `<div class="card__placeholder" aria-hidden="true">${restaurant.emoji}</div>
        <span class="card__photo-note">Photo coming soon</span>`;
-
-  const tagsHtml = restaurant.tags.length
-    ? `<p class="card__tags">${restaurant.tags.map(tag =>
-        `<span class="card__tag">${escapeHtml(tag)}</span>`
-      ).join("")}</p>`
-    : "";
-
-  const dishPreview = restaurant.dishes
-    .slice(0, 3)
-    .map(dish => dish.name)
-    .join(" · ");
 
   const sampleNote = restaurant.verified
     ? ""
     : `<p class="card__sample">Sample info, not verified yet</p>`;
 
-  const saved = isFavorite(restaurant.id);
-
   return `
     <article class="card">
       <div class="card__photo" style="--tone: ${restaurant.tone}">
         ${photo}
-        <button class="card__fav" type="button" data-fav="${restaurant.id}"
-          aria-pressed="${saved}" aria-label="Save to favorites">${saved ? "♥" : "♡"}</button>
         <div class="price-tag">
           <span class="price-tag__from">From</span>
           <span class="price-tag__amount">${formatPrice(startingPrice(restaurant))}</span>
@@ -241,15 +143,12 @@ function cardHtml(restaurant) {
       <div class="card__body">
         <h3 class="card__name">${escapeHtml(restaurant.name)}</h3>
         <p class="card__area">📍 ${escapeHtml(restaurant.area)}</p>
-        ${tagsHtml}
-        <p class="card__dishes">${escapeHtml(dishPreview)}</p>
         ${sampleNote}
         <button class="btn" type="button" data-menu="${restaurant.id}">View menu</button>
       </div>
     </article>
   `;
 }
-
 function render(list) {
   grid.innerHTML = list.map(cardHtml).join("");
   emptyMessage.hidden = list.length > 0;
@@ -264,26 +163,15 @@ function render(list) {
 }
 
 
-/* ---------- 5. SEARCH + FILTERS ---------- */
+/* ---------- 4. SEARCH + FILTERS ---------- */
 const searchInput = document.getElementById("search-input");
 const chips = document.querySelectorAll(".chip");
 
 const filters = {
   all: () => true,
-  favorites: restaurant => isFavorite(restaurant.id),
-  "budget-1000": restaurant => startingPrice(restaurant) <= 1000,
-  "budget-1500": restaurant => startingPrice(restaurant) <= 1500,
-  "budget-2500": restaurant => startingPrice(restaurant) <= 2500,
+  budget: restaurant => startingPrice(restaurant) <= 1500,
   traditional: restaurant => restaurant.tags.includes("traditional"),
-  chicken: restaurant => restaurant.tags.includes("chicken"),
-  "mvog-ada": restaurant => restaurant.area === "Mvog-Ada",
-  yaounde: restaurant => restaurant.area === "Yaoundé",
-  essos: restaurant => restaurant.area === "Essos",
-  bastos: restaurant => restaurant.area === "Bastos",
-  melen: restaurant => restaurant.area === "Melen",
-  mokolo: restaurant => restaurant.area === "Mokolo",
-  emana: restaurant => restaurant.area === "Emana",
-  "ngoa-ekelle": restaurant => restaurant.area === "Ngoa-Ekellé"
+  chicken: restaurant => restaurant.tags.includes("chicken")
 };
 
 let activeFilter = "all";
@@ -303,7 +191,6 @@ function update() {
   const results = restaurants.filter(
     restaurant => filters[activeFilter](restaurant) && matchesSearch(restaurant, query)
   );
-  results.sort((a, b) => startingPrice(a) - startingPrice(b));
   render(results);
 }
 
@@ -335,7 +222,6 @@ document.getElementById("header-search").addEventListener("click", () => {
 const dialog = document.getElementById("menu-dialog");
 const menuTitle = document.getElementById("menu-title");
 const menuArea = document.getElementById("menu-area");
-const menuMeta = document.getElementById("menu-meta");
 const menuList = document.getElementById("menu-list");
 const menuNote = document.getElementById("menu-note");
 
@@ -346,41 +232,20 @@ function openMenu(id) {
   menuTitle.textContent = restaurant.name;
   menuArea.textContent = "📍 " + restaurant.area;
 
-  const tagText = restaurant.tags.length
-    ? restaurant.tags.join(", ")
-    : "general";
-  const dishCount = restaurant.dishes.length;
-  menuMeta.textContent =
-    dishCount + (dishCount === 1 ? " dish" : " dishes") +
-    " · from " + formatPrice(startingPrice(restaurant)) +
-    " · " + tagText;
-
-  const dishes = restaurant.dishes.slice().sort((a, b) => a.price - b.price);
-
-  menuList.innerHTML = dishes
-    .map(dish => `
-        <li>
-          ${dish.image ? `<img class="menu-list__img" src="${escapeHtml(dish.image)}"
-          alt="${escapeHtml(dish.name)}">` : ""}
-          <span class="menu-list__name">${escapeHtml(dish.name)}</span>
-          <span class="menu-list__price">${formatPrice(dish.price)}</span>
-          </li>`)
-          .join("");
+  menuList.innerHTML = restaurant.dishes
+    .map(dish => `<li>
+        <span>${escapeHtml(dish.name)}</span>
+        <span class="menu-list__price">${formatPrice(dish.price)}</span>
+      </li>`)
+    .join("");
 
   menuNote.hidden = restaurant.verified;
-  menuNote.textContent = "Sample menu for the demo. Dishes and prices are not verified yet.";
+  menuNote.textContent = "Sample menu. Dishes and prices are placeholders until we verify them.";
 
   dialog.showModal();
 }
 
 grid.addEventListener("click", event => {
-  const favButton = event.target.closest("[data-fav]");
-  if (favButton) {
-    toggleFavorite(favButton.dataset.fav);
-    update();
-    return;
-  }
-
   const button = event.target.closest("[data-menu]");
   if (button) openMenu(button.dataset.menu);
 });

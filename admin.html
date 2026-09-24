@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Admin - Tchop Yaoundé</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="auth-styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="flag-stripe" aria-hidden="true"></div>
+    <div class="wrap site-header__row">
+      <a class="logo" href="index.html">🍴 Tchop Yaoundé</a>
+      <nav class="header-nav">
+        <a class="header-link" href="login.html">Login</a>
+        <a class="header-link" href="signup.html">Sign up</a>
+        <a class="header-link" href="admin.html">Admin</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="auth-page">
+    <div class="auth-wrap">
+      <h1>Admin — Clients</h1>
+      <p class="auth-note">View and manage registered clients</p>
+
+      <div style="margin-top:1rem;">
+        <table class="table-list" id="clients-table">
+          <thead>
+            <tr><th>Name</th><th>Email</th><th>Actions</th></tr>
+          </thead>
+          <tbody id="clients-list"></tbody>
+        </table>
+      </div>
+ 
+      <section style="margin-top:2rem;">
+        <h2>Orders</h2>
+        <p class="auth-note">View incoming commands (orders) from clients. Refreshes on demand.</p>
+        <div style="margin-top:1rem;">
+          <table class="table-list" id="orders-table">
+            <thead>
+              <tr><th>Order ID</th><th>Client</th><th>Items</th><th>Total</th><th>Status</th><th>Placed At</th><th>Actions</th></tr>
+            </thead>
+            <tbody id="orders-list"></tbody>
+          </table>
+        </div>
+        <div style="margin-top:0.5rem;">
+          <button id="refresh-orders" class="btn">Refresh Orders</button>
+        </div>
+      </section>
+ 
+      <div style="margin-top:1rem;">
+        <button id="logout" class="btn">Logout</button>
+      </div>
+ 
+      <div id="admin-message" role="status" aria-live="polite"></div>
+    </div>
+  </main>
+
+  <script src="auth.js"></script>
+  <script>
+    // API base — change if your backend listens on another host/port
+    const API_BASE = 'http://localhost:3000';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const current = Auth.getCurrentUser();
+      if (!current || current.role !== 'admin') {
+        // not allowed
+        window.location = 'login.html';
+        return;
+      }
+
+      const listEl = document.getElementById('clients-list');
+      const msg = document.getElementById('admin-message');
+      const ordersListEl = document.getElementById('orders-list');
+      const refreshOrdersBtn = document.getElementById('refresh-orders');
+
+      function render() {
+        const users = Auth.getUsers().filter(u => u.role === 'client');
+        listEl.innerHTML = users.map(u => `
+          <tr>
+            <td>${u.name}</td>
+            <td>${u.email}</td>
+            <td class="table-actions">
+              <button data-id="${u.id}" class="btn btn-view">View</button>
+              <button data-id="${u.id}" class="btn btn-delete">Delete</button>
+            </td>
+          </tr>
+        `).join('');
+
+        // attach delegates
+        listEl.querySelectorAll('.btn-view').forEach(b => b.addEventListener('click', () => {
+          const id = b.dataset.id;
+          const user = Auth.getUsers().find(x => x.id === id);
+          msg.textContent = user ? `Client: ${user.name} — ${user.email}` : 'Not found';
+          msg.style.color = 'var(--forest)';
+        }));
+
+        listEl.querySelectorAll('.btn-delete').forEach(b => b.addEventListener('click', () => {
+          const id = b.dataset.id;
+          const users = Auth.getUsers().filter(x => x.id !== id);
+          Auth.setUsers(users);
+          msg.textContent = 'Client removed';
+          msg.style.color = 'var(--tomato)';
+          render();
+        }));
+      }
+      // Format items array or string into readable HTML
+      function formatItems(items) {
+        if (!items) return '';
+        try {
+          const arr = typeof items === 'string' ? JSON.parse(items) : items;
+          return arr.map(i => `${i.name} x${i.quantity || 1}`).join('<br>');
+        } catch (e) {
+          return String(items);
+        }
+      }
+
+      async function fetchOrders() {
+        ordersListEl.innerHTML = '<tr><td colspan="7">Loading...</td></tr>';
+        try {
+          const res = await fetch(`${API_BASE}/api/orders`);
+          if (!res.ok) throw new Error('Failed to fetch');
+          const orders = await res.json();
+          if (!orders.length) {
+            ordersListEl.innerHTML = '<tr><td colspan="7">No orders</td></tr>';
+            return;
+          }
+          ordersListEl.innerHTML = orders.map(o => `
+            <tr>
+              <td>${o.id}</td>
+              <td>${o.client_name || o.client_email || o.client_id}</td>
+              <td>${formatItems(o.items)}</td>
+              <td>${o.total || ''}</td>
+              <td>${o.status}</td>
+              <td>${new Date(o.created_at).toLocaleString()}</td>
+              <td class="table-actions">
+                <button data-id="${o.id}" data-action="prepare" class="btn btn-action">Mark Preparing</button>
+                <button data-id="${o.id}" data-action="complete" class="btn btn-action">Mark Complete</button>
+              </td>
+            </tr>
+          `).join('');
+
+          // attach actions
+          ordersListEl.querySelectorAll('.btn-action').forEach(b => b.addEventListener('click', async () => {
+            const id = b.dataset.id; const action = b.dataset.action;
+            const newStatus = action === 'prepare' ? 'preparing' : 'complete';
+            try {
+              const r = await fetch(`${API_BASE}/api/orders/${id}/status`, {
+                method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({status:newStatus})
+              });
+              if (!r.ok) throw new Error('Failed to update');
+              msg.textContent = `Order ${id} updated to ${newStatus}`;
+              msg.style.color = 'var(--forest)';
+              fetchOrders();
+            } catch (err) {
+              msg.textContent = 'Failed to update order';
+              msg.style.color = 'var(--tomato)';
+            }
+          }));
+        } catch (err) {
+          ordersListEl.innerHTML = '<tr><td colspan="7">Failed to load orders</td></tr>';
+          msg.textContent = 'Could not reach backend API. Make sure the server is running.';
+          msg.style.color = 'var(--tomato)';
+        }
+      }
+
+      render();
+      fetchOrders();
+
+      refreshOrdersBtn.addEventListener('click', () => fetchOrders());
+
+      document.getElementById('logout').addEventListener('click', () => {
+        Auth.setCurrentUser(null);
+        window.location = 'login.html';
+      });
+    });
+  </script>
+</body>
+</html>

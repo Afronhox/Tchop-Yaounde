@@ -1,0 +1,70 @@
+/* Styles for auth pages (login/signup/admin small helpers) */
+.auth-page {
+  padding-block: 2rem;
+}
+.auth-wrap {
+  width: min(560px, 100% - 2rem);
+  margin: 2rem auto;
+  background: var(--white);
+  border: 2px solid var(--ink);
+  border-radius: 12px;
+  padding: 1.25rem;
+}
+.auth-page h1 {
+  margin: 0 0 0.75rem;
+  font-family: var(--font-display);
+  font-weight: 800;
+}
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.form-field label {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+.form-field input {
+  padding: 0.6rem 0.9rem;
+  border: 2px solid var(--line);
+  border-radius: 8px;
+  font: inherit;
+}
+.auth-actions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+.auth-note {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+.header-nav .header-link {
+  color: var(--white);
+  text-decoration: none;
+  font-weight: 700;
+  margin-right: 0.6rem;
+  padding: 0.35rem 0.6rem;
+  border-radius: 6px;
+  border: 2px solid rgba(255,255,255,0.15);
+}
+.header-nav .header-link:hover {
+  background: rgba(255,255,255,0.06);
+}
+.table-list {
+  width: 100%;
+  border-collapse: collapse;
+}
+.table-list th, .table-list td {
+  padding: 0.5rem 0.6rem;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+}
+.table-actions button { margin-right: 0.4rem; }

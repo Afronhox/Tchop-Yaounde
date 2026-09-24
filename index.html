@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Tchop Yaoundé | Good food, small budget</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
@@ -13,8 +13,10 @@
     <div class="wrap site-header__row">
       <a class="logo" href="#top">🍴 Tchop Yaoundé</a>
       <nav class="header-nav">
+        <a class="header-link" href="login.html">Login</a>
+        <a class="header-link" href="signup.html">Sign up</a>
+        <a class="header-link" href="admin.html">Admin</a>
         <a class="header-search" href="#search-input" id="header-search">Search</a>
-        <a class="header-link" href="#about">About</a>
       </nav>
     </div>
   </header>
@@ -38,23 +40,9 @@
       <div class="wrap">
         <div class="filters" role="group" aria-label="Filter restaurants">
           <button class="chip is-active" type="button" data-filter="all" aria-pressed="true">All</button>
-          <button class="chip" type="button" data-filter="favorites" aria-pressed="false">Favorites</button>
-          <button class="chip" type="button" data-filter="budget-1000" aria-pressed="false">Under 1000 F</button>
-          <button class="chip" type="button" data-filter="budget-1500" aria-pressed="false">Under 1500 F</button>
-          <button class="chip" type="button" data-filter="budget-2500" aria-pressed="false">Under 2500 F</button>
+          <button class="chip" type="button" data-filter="budget" aria-pressed="false">Under 1500 F</button>
           <button class="chip" type="button" data-filter="traditional" aria-pressed="false">Traditional</button>
           <button class="chip" type="button" data-filter="chicken" aria-pressed="false">🍗 Chicken</button>
-        </div>
-
-        <div class="filters filters--area" role="group" aria-label="Filter by area">
-          <button class="chip" type="button" data-filter="mvog-ada" aria-pressed="false">Mvog-Ada</button>
-          <button class="chip" type="button" data-filter="yaounde" aria-pressed="false">Yaoundé</button>
-          <button class="chip" type="button" data-filter="essos" aria-pressed="false">Essos</button>
-          <button class="chip" type="button" data-filter="bastos" aria-pressed="false">Bastos</button>
-          <button class="chip" type="button" data-filter="melen" aria-pressed="false">Melen</button>
-          <button class="chip" type="button" data-filter="mokolo" aria-pressed="false">Mokolo</button>
-          <button class="chip" type="button" data-filter="emana" aria-pressed="false">Emana</button>
-          <button class="chip" type="button" data-filter="ngoa-ekelle" aria-pressed="false">Ngoa-Ekellé</button>
         </div>
 
         <p class="result-count" id="result-count" aria-live="polite"></p>
@@ -65,27 +53,6 @@
           <p>No restaurant matches that search.</p>
           <button class="btn" type="button" id="reset">Clear search and filters</button>
         </div>
-      </div>
-    </section>
-
-    <section class="about" id="about">
-      <div class="wrap">
-        <h2>About Tchop Yaoundé</h2>
-        <p>
-          Tchop Yaoundé is a student project. It helps people find affordable places
-          to eat in Yaoundé by searching, filtering, and checking sample menus.
-        </p>
-        <h3>How it works</h3>
-        <ol class="about__steps">
-          <li>Search a restaurant, area, or dish.</li>
-          <li>Filter by budget, food type, or quartier.</li>
-          <li>Open a menu to see dishes and prices.</li>
-          <li>Save places you like with the heart button.</li>
-        </ol>
-        <p class="about__note">
-          Many places and prices are sample data for the demo.
-          Always confirm with the restaurant before you go.
-        </p>
       </div>
     </section>
 
@@ -104,11 +71,9 @@
         <div>
           <h2 id="menu-title"></h2>
           <p id="menu-area" class="dialog__area"></p>
-          <p id="menu-meta" class="dialog__meta"></p>
         </div>
         <button class="dialog__close" type="button" id="menu-close" aria-label="Close menu">✕</button>
       </div>
-      <p class="dialog__menu-label">Menu</p>
       <ul class="menu-list" id="menu-list"></ul>
       <p class="dialog__note" id="menu-note" hidden></p>
     </div>
