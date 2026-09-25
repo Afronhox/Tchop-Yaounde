@@ -21,7 +21,7 @@ const restaurants = [
     ]
   },
   {
-    id: "la-force",
+    id: "la force du poulet",
     name: "La Force",
     area: "Yaoundé",
     tags: ["chicken"],
@@ -149,6 +149,7 @@ function cardHtml(restaurant) {
     </article>
   `;
 }
+
 function render(list) {
   grid.innerHTML = list.map(cardHtml).join("");
   emptyMessage.hidden = list.length > 0;
@@ -233,7 +234,8 @@ function openMenu(id) {
   menuArea.textContent = "📍 " + restaurant.area;
 
   menuList.innerHTML = restaurant.dishes
-    .map(dish => `<li>
+    .map(dish => `
+      <li>
         <span>${escapeHtml(dish.name)}</span>
         <span class="menu-list__price">${formatPrice(dish.price)}</span>
       </li>`)
